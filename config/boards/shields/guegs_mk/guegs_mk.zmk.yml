@@ -1,0 +1,9 @@
+file_format: "1"
+id: guegs_mk
+name: Gueg's Mechanical Keyboard
+type: shield
+url: https://github.com/eviallet
+requires: [holyiot_nrf52840]
+features:
+  - keys
+  - trackball

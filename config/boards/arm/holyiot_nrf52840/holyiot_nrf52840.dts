@@ -1,0 +1,125 @@
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+#include "holyiot_connector.dtsi"
+
+/ {
+	model = "HOLYIOT nRF52840";
+	compatible = "holyiot,nrf52840";
+
+	chosen {
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+		zephyr,uart-mcumgr = &uart0;
+		zephyr,bt-mon-uart = &uart0;
+		zephyr,bt-c2h-uart = &uart0;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		led0: led_0 {
+			gpios = <&gpio0 10 0 GPIO_ACTIVE_HIGH>;
+			label = "Led 0";
+		};
+		led1: led_1 {
+			gpios = <&gpio0 9 0>;
+			label = "Led 1";
+		};
+		led2: led_2 {
+			gpios = <&gpio1 6 0>;
+			label = "Led 2";
+		};
+		led3: led_3 {
+			gpios = <&gpio1 4 0>;
+			label = "Led 3";
+		};
+	};
+
+	aliases {
+		led0 = &led0;
+		led1 = &led1;
+		led2 = &led2;
+		led3 = &led3;
+	};
+
+	sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+    };
+
+	vbatt {
+		compatible = "zmk,battery-voltage-divider";
+		io-channels = <&adc 0>;
+		label = "test";
+		output-ohms = <2000000>;
+		full-ohms = <(2000000 + 806000)>;
+	};
+};
+
+&adc {
+	status = "okay";
+};
+
+&gpiote {
+	status = "okay";
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&i2c1 {
+	compatible = "nordic,nrf-twi";
+	status = "okay";
+	sda-pin = <10>;
+	scl-pin = <11>;
+};
+
+
+&flash0 {
+
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x000000000 0x0000C000>;
+		};
+		slot0_partition: partition@c000 {
+			label = "image-0";
+			reg = <0x0000C000 0x00067000>;
+		};
+		slot1_partition: partition@73000 {
+			label = "image-1";
+			reg = <0x00073000 0x00067000>;
+		};
+		scratch_partition: partition@da000 {
+			label = "image-scratch";
+			reg = <0x000da000 0x0001e000>;
+		};
+
+		/*
+		 * The flash starting at 0x000f8000 and ending at
+		 * 0x000fffff is reserved for use by the application.
+		 */
+
+		/* Storage partition will be used by FCB/NFFS/NVS if enabled. */
+		storage_partition: partition@f8000 {
+			label = "storage";
+			reg = <0x000f8000 0x00008000>;
+		};
+	};
+};
+
+// zephyr_udc0: &usbd {
+// 	compatible = "nordic,nrf-usbd";
+// 	status = "okay";
+// };

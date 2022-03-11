@@ -13,7 +13,5 @@
 #
 ---
 include:
-  - board: nrf52840_m2
-    shield: ergodash_left
-  - board: nrf52840_m2
-    shield: ergodash_right
+  - board: holyiot_nrf52840
+    shield: guegs_mk

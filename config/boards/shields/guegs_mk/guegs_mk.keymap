@@ -1,0 +1,90 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/trackball_pim447.h>
+
+#define LAYER_MEDIA  0
+#define LAYER_MOVE   1
+#define LAYER_OS     2
+#define LAYER_SHTCUT 3
+#define LAYER_DEFAULT LAYER_MEDIA
+
+// Gueg's mk layout :
+// 1
+// 2  5
+// 3  6  EC11
+// 4  7  PIM447
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        layer_media {
+
+            // [NEXT LAYER]
+            // [AUD TRACK]  [SUB TRACK]
+            // [PAUSE]      [FULLSCREEN] 
+            // [LEFT]       [RIGHT]
+            
+            bindings = <
+                &to LAYER_MOVE
+                &kp B           &kp V
+                &kp SPACE       &kp F
+                &kp LEFT        &kp RIGHT
+				// &pim447_toggle
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        layer_move {
+
+            // [NEXT LAYER]
+            // [UP]       [DOWN]
+            // [PAGE_UP]  [PAGE_DOWN] 
+            // [LEFT]     [RIGHT]
+
+            bindings = <
+                &to LAYER_OS
+                &kp UP          &kp DOWN
+                &kp PAGE_UP     &kp PAGE_DOWN
+                &kp LEFT        &kp RIGHT
+				// &pim447_toggle
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+            
+        };
+
+        layer_os {
+
+            // [NEXT LAYER]
+            // [ALT+F4]     [ENTER]
+            // [SUPPR]      [] 
+            // [TO_TV]      [TO_PC]
+
+            bindings = <
+                &to LAYER_MEDIA
+                &kp LA(F4)      &kp ENTER
+                &kp DEL         &kp PAGE_DOWN
+                &kp LEFT        &kp RIGHT
+				// &pim447_toggle
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+    };
+};
+
+
+
+
+
+// --- PIM447 modes ---
+// &pim447_move: set trackball mode to "move" .
+// &pim447_scroll: set trackball mode to "scroll" .
+// &pim447_toggle: toggle trackball mode (from "scroll" to "move", or vice versa).
+// &pim447_move_scroll: set trackball mode to "move" when pressed, then to "scroll" when released.
+// &pim447_scroll_move: set trackball mode to "scroll" when pressed, then to "move" when released.
+// &pim447_toggle_toggle: toggle trackball mode when pressed, then toggle again when released.
+
+

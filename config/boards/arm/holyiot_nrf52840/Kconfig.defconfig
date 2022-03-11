@@ -1,0 +1,25 @@
+
+if BOARD_HOLYIOT_NRF52840
+
+	config BOARD
+		default "holyiot_nrf52840"
+
+	config BT_CTLR
+		default BT
+
+	config ZMK_BLE
+		default y
+
+	# config ZMK_USB
+	# 	default y
+
+	# config USB_NRFX
+	# 	default y
+
+	# config USB_DEVICE_STACK
+	# 	default y
+
+	config ZMK_BATTERY_VOLTAGE_DIVIDER
+		default y
+
+endif # BOARD_HOLYIOT_NRF52840

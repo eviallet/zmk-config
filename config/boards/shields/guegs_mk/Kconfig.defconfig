@@ -1,0 +1,10 @@
+
+if SHIELD_GUEGS_MK
+
+	config ZMK_KEYBOARD_NAME
+		default "Gueg's keyboard"
+
+	config ZMK_KSCAN_DIRECT_POLLING
+		default y
+
+endif

@@ -1,0 +1,18 @@
+identifier: holyiot_nrf52840
+name: Holyiot nRF52840
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+supported:
+  - adc
+  - ble
+  - counter
+  - gpio
+  - i2c
+  - ieee802154
+  - usb_cdc
+  - usb_device
+  - watchdog

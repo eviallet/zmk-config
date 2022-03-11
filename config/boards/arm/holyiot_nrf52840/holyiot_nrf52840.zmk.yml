@@ -1,0 +1,10 @@
+file_format: "1"
+id: holyiot_nrf52840
+name: holyiot_nrf52840
+type: board
+arch: arm
+outputs:
+  - usb
+  - ble
+url: https://nicekeyboards.com/nice-nano
+exposes: [holyiot_connector]
