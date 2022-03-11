@@ -6,4 +6,3 @@ url: https://github.com/eviallet
 requires: [holyiot_nrf52840]
 features:
   - keys
-  - trackball
