@@ -10,14 +10,14 @@ if BOARD_HOLYIOT_NRF52840
 	config ZMK_BLE
 		default y
 
-	# config ZMK_USB
-	# 	default y
+	config ZMK_USB
+		default y
 
-	# config USB_NRFX
-	# 	default y
+	config USB_NRFX
+		default y
 
-	# config USB_DEVICE_STACK
-	# 	default y
+	config USB_DEVICE_STACK
+		default y
 
 	config ZMK_BATTERY_VOLTAGE_DIVIDER
 		default y
