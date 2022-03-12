@@ -39,14 +39,14 @@
         layer_move {
 
             // [NEXT LAYER]
-            // [UP]       [DOWN]
-            // [PAGE_UP]  [PAGE_DOWN] 
+            // [ENTER]    [BACKSPACE]
+            // [UP]       [DOWN] 
             // [LEFT]     [RIGHT]
 
             bindings = <
                 &to LAYER_OS
-                &kp UP          &kp DOWN
                 &kp PAGE_UP     &kp PAGE_DOWN
+                &kp UP          &kp DOWN
                 &kp LEFT        &kp RIGHT
 				// &pim447_toggle
             >;
@@ -58,15 +58,34 @@
         layer_os {
 
             // [NEXT LAYER]
-            // [ALT+F4]     [ENTER]
-            // [SUPPR]      [] 
+            // [ENTER]      [ALT F4]
+            // [SUPPR]      [ESCAPE] 
             // [TO_TV]      [TO_PC]
 
             bindings = <
+                &to LAYER_SHTCUT
+                &kp ENTER           &kp LA(F4)
+                &kp DEL             &kp ESC
+                &kp LC(LG(KP_N7))   &kp LC(LG(KP_N8))
+				// &pim447_toggle
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+        
+        
+        layer_shtcut {
+
+            // [NEXT LAYER]
+            // [SERIE SOIR]  [SERIE ESTELLE]
+            // [DOCS]        [NEXT EPISODE] 
+            // [GAME]        [PLAYNITE]
+
+            bindings = <
                 &to LAYER_MEDIA
-                &kp LA(F4)      &kp ENTER
-                &kp DEL         &kp PAGE_DOWN
-                &kp LEFT        &kp RIGHT
+                &kp LC(LG(KP_N1))    &kp LC(LG(KP_N2))
+                &kp LC(LG(KP_N3))    &kp LC(LG(KP_N4))
+                &kp LC(LG(KP_N5))    &kp LC(LG(KP_N6)) 
 				// &pim447_toggle
             >;
 
