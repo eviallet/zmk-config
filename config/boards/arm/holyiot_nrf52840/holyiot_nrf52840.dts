@@ -74,7 +74,7 @@
 	status = "okay";
 };
 
-&i2c0: i2c@40003000 {
+&i2c0 {
 	compatible = "nordic,nrf-twi";
 	status = "okay";
 	sda-pin = <4>;
