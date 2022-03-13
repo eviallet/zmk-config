@@ -43,7 +43,7 @@
 	status = "okay";
 };
 
-&i2c1 {
+&i2c0 {
 	status = "okay";
 	
 	trackball_pim447@a {

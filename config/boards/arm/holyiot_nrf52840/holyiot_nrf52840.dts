@@ -74,11 +74,11 @@
 	status = "okay";
 };
 
-&i2c1 {
+&i2c0: i2c@40003000 {
 	compatible = "nordic,nrf-twi";
 	status = "okay";
-	sda-pin = <10>;
-	scl-pin = <11>;
+	sda-pin = <4>;
+	scl-pin = <5>;
 };
 
 
