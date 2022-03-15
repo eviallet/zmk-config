@@ -105,6 +105,7 @@
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
+
         layer_bt {
 
             // [BACK TO LAYER_MEDIA]
@@ -119,7 +120,9 @@
                 &bt BT_SEL 4    &bt BT_CLR 
 				// &pim447_toggle
             >;
-        }
+            
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
     };
 };
 
