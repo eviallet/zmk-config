@@ -95,7 +95,7 @@
             // [GAME]        [PLAYNITE]
 
             bindings = <
-                &to LAYER_BT // &to LAYER_MEDIA // FIXME temporary fix for combos not working after meging shield with board
+                &to LAYER_MEDIA
                 &kp LC(LG(KP_N1))    &kp LC(LG(KP_N2))
                 &kp LC(LG(KP_N3))    &kp LC(LG(KP_N4))
                 &kp LC(LG(KP_N5))    &kp LC(LG(KP_N6)) 
