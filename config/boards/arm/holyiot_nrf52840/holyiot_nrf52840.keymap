@@ -12,16 +12,16 @@
 
 // Gueg's mk layout :
 // 1
-// 2  5
-// 3  6  EC11
-// 4  7  PIM447
+// 2  3
+// 4  5  EC11
+// 6  7  PIM447
 
 / {
     combos {
         compatible = "zmk,combos";
         combo_bt_layer {
             timeout-ms = <50>;
-            key-positions = <1 2 3>;
+            key-positions = <1 6>;
             bindings = <&to LAYER_BT>;
         };
     };
@@ -95,7 +95,7 @@
             // [GAME]        [PLAYNITE]
 
             bindings = <
-                &to LAYER_MEDIA
+                &to LAYER_BT // &to LAYER_MEDIA // FIXME temporary fix for combos not working after meging shield with board
                 &kp LC(LG(KP_N1))    &kp LC(LG(KP_N2))
                 &kp LC(LG(KP_N3))    &kp LC(LG(KP_N4))
                 &kp LC(LG(KP_N5))    &kp LC(LG(KP_N6)) 
