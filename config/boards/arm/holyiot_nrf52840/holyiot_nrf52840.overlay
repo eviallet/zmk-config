@@ -39,7 +39,7 @@
 
 };
 
-&left_encoder {
+&encoder {
 	status = "okay";
 };
 
