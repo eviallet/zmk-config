@@ -11,8 +11,10 @@ supported:
   - ble
   - counter
   - gpio
+  - kscan
   - i2c
   - ieee802154
+  - nvs
   - usb_cdc
   - usb_device
   - watchdog
