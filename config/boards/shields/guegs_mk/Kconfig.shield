@@ -1,3 +1,0 @@
-
-config SHIELD_GUEGS_MK
-	def_bool $(shields_list_contains,guegs_mk)

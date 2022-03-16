@@ -1,6 +1,12 @@
 
 if BOARD_HOLYIOT_NRF52840
 
+	config ZMK_KEYBOARD_NAME
+		default "Gueg's keyboard"
+
+	config ZMK_KSCAN_DIRECT_POLLING
+		default y
+
 	config BOARD
 		default "holyiot_nrf52840"
 

@@ -37,6 +37,14 @@
 		};
 	};
 
+	buttons {
+		compatible = "gpio-keys";
+		button0: button_0 {
+			gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
+			label = "Push button switch 0";
+		};
+	};
+
 	aliases {
 		led0 = &led0;
 		led1 = &led1;
@@ -46,7 +54,7 @@
 
 	sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder>;
+        sensors = <&encoder>;
     };
 
 	vbatt {
@@ -109,5 +117,11 @@
 			reg = <0x000f8000 0x00008000>;
 		};
 	};
+};
+
+
+zephyr_udc0: &usbd {
+	compatible = "nordic,nrf-usbd";
+	status = "okay";
 };
 

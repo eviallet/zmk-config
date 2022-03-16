@@ -3,8 +3,11 @@ id: holyiot_nrf52840
 name: holyiot_nrf52840
 type: board
 arch: arm
+url: https://github.com/eviallet/zmk-config
+features:
+  - keys
+  # - trackball
 outputs:
   - usb
   - ble
-url: https://nicekeyboards.com/nice-nano
 exposes: [holyiot_connector]

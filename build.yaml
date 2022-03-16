@@ -14,4 +14,3 @@
 ---
 include:
   - board: holyiot_nrf52840
-    shield: guegs_mk
