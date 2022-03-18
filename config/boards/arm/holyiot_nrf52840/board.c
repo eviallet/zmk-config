@@ -33,14 +33,22 @@ static int layer_state_changed_listener(const zmk_event_t *ev) {
     if(data == NULL) { // only consider enabled events
 		return 0;
 	}
-	
-	// Now, we know that the notifying layer is the currently enabled one 
-	return !(
-		set_led(LED_PARAMS(DT_ALIAS(led0)), data->layer == 0 && data->state) && 
-		set_led(LED_PARAMS(DT_ALIAS(led1)), data->layer == 1 && data->state) &&
-		set_led(LED_PARAMS(DT_ALIAS(led2)), data->layer == 2 && data->state) &&
-		set_led(LED_PARAMS(DT_ALIAS(led3)), data->layer == 3 && data->state)
-	); // 0 for success
+
+	if(data->layer == 0 || data->state == 0) {
+		return !(
+			set_led(LED_PARAMS(DT_ALIAS(led0)), 1) && 
+			set_led(LED_PARAMS(DT_ALIAS(led1)), 0) &&
+			set_led(LED_PARAMS(DT_ALIAS(led2)), 0) &&
+			set_led(LED_PARAMS(DT_ALIAS(led3)), 0)
+		);
+	} else {
+		return !(
+			set_led(LED_PARAMS(DT_ALIAS(led0)), 0) && 
+			set_led(LED_PARAMS(DT_ALIAS(led1)), data->layer == 1 && data->state) &&
+			set_led(LED_PARAMS(DT_ALIAS(led2)), data->layer == 2 && data->state) &&
+			set_led(LED_PARAMS(DT_ALIAS(led3)), data->layer == 3 && data->state)
+		);
+	}
 }
 
 ZMK_LISTENER(board_leds, layer_state_changed_listener);
