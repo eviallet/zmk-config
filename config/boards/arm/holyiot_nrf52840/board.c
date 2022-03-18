@@ -28,12 +28,17 @@ static int set_led(const char* ledNode, const gpio_pin_t ledPin, const int ledFl
 	return gpio_pin_set(dev, ledPin, state) == 0; // 0 for success, but for easier and-ing, return 1
 }
 
+static int set_single_led(int index) {
+	return !(
+		set_led(LED_PARAMS(DT_ALIAS(led0)), index == 0) &&
+		set_led(LED_PARAMS(DT_ALIAS(led1)), index == 1) &&
+		set_led(LED_PARAMS(DT_ALIAS(led2)), index == 2) &&
+		set_led(LED_PARAMS(DT_ALIAS(led3)), index == 3)
+	);
+}
+
 static int board_leds_init() {
-	set_led(LED_PARAMS(DT_ALIAS(led0)), 1);
-	set_led(LED_PARAMS(DT_ALIAS(led1)), 0);
-	set_led(LED_PARAMS(DT_ALIAS(led2)), 0);
-	set_led(LED_PARAMS(DT_ALIAS(led3)), 0);
-	return 0;
+	return set_single_led(0);
 }
 
 static int layer_state_changed_listener(const zmk_event_t *ev) {
@@ -42,12 +47,11 @@ static int layer_state_changed_listener(const zmk_event_t *ev) {
 		return 0;
 	}
 
-	return !(
-		set_led(LED_PARAMS(DT_ALIAS(led0)), data->layer == 3 && data->state == 0) && 
-		set_led(LED_PARAMS(DT_ALIAS(led1)), data->layer == 1 && data->state) &&
-		set_led(LED_PARAMS(DT_ALIAS(led2)), data->layer == 2 && data->state) &&
-		set_led(LED_PARAMS(DT_ALIAS(led3)), data->layer == 3 && data->state)
-	);
+	if(data->layer == 3 && data->state == 0) { // first layer selected = last layer disabled
+		return set_single_led(0);
+	} else {
+		return set_single_led(data->layer);
+	}
 }
 
 ZMK_LISTENER(board_leds, layer_state_changed_listener);
