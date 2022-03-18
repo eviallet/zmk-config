@@ -37,7 +37,7 @@
 			label = "Led 2";
 		};
 		led3: led_3 {
-			gpios = <&gpio0 10 1>;
+			gpios = <&gpio0 10 0>;
 			label = "Led 3";
 		};
 	};
