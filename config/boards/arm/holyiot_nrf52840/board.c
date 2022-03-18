@@ -12,6 +12,14 @@
 
 #define LED_PARAMS(led) LED_LABEL(led), LED_PIN(led), LED_FLAGS(led)
 
+static int board_leds_init() {
+	set_led(LED_PARAMS(DT_ALIAS(led0)), 1);
+	set_led(LED_PARAMS(DT_ALIAS(led1)), 0);
+	set_led(LED_PARAMS(DT_ALIAS(led2)), 0);
+	set_led(LED_PARAMS(DT_ALIAS(led3)), 0);
+	return 0;
+}
+
 static int set_led(const char* ledNode, const gpio_pin_t ledPin, const int ledFlags, int state) {
 	const struct device *dev = device_get_binding(ledNode);
 	int ret;
@@ -34,22 +42,15 @@ static int layer_state_changed_listener(const zmk_event_t *ev) {
 		return 0;
 	}
 
-	if(data->layer == 0 || data->state == 0) {
-		return !(
-			set_led(LED_PARAMS(DT_ALIAS(led0)), 1) && 
-			set_led(LED_PARAMS(DT_ALIAS(led1)), 0) &&
-			set_led(LED_PARAMS(DT_ALIAS(led2)), 0) &&
-			set_led(LED_PARAMS(DT_ALIAS(led3)), 0)
-		);
-	} else {
-		return !(
-			set_led(LED_PARAMS(DT_ALIAS(led0)), 0) && 
-			set_led(LED_PARAMS(DT_ALIAS(led1)), data->layer == 1 && data->state) &&
-			set_led(LED_PARAMS(DT_ALIAS(led2)), data->layer == 2 && data->state) &&
-			set_led(LED_PARAMS(DT_ALIAS(led3)), data->layer == 3 && data->state)
-		);
-	}
+	return !(
+		set_led(LED_PARAMS(DT_ALIAS(led0)), !data->state) && 
+		set_led(LED_PARAMS(DT_ALIAS(led1)), data->layer == 1 && data->state) &&
+		set_led(LED_PARAMS(DT_ALIAS(led2)), data->layer == 2 && data->state) &&
+		set_led(LED_PARAMS(DT_ALIAS(led3)), data->layer == 3 && data->state)
+	);
 }
 
 ZMK_LISTENER(board_leds, layer_state_changed_listener);
 ZMK_SUBSCRIPTION(board_leds, zmk_layer_state_changed);
+
+SYS_INIT(board_leds_init, APPLICATION, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT);
