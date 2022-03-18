@@ -43,7 +43,7 @@ static int layer_state_changed_listener(const zmk_event_t *ev) {
 	}
 
 	return !(
-		set_led(LED_PARAMS(DT_ALIAS(led0)), data->layer == 1 && data->state == 0) && 
+		set_led(LED_PARAMS(DT_ALIAS(led0)), data->layer == 3 && data->state == 0) && 
 		set_led(LED_PARAMS(DT_ALIAS(led1)), data->layer == 1 && data->state) &&
 		set_led(LED_PARAMS(DT_ALIAS(led2)), data->layer == 2 && data->state) &&
 		set_led(LED_PARAMS(DT_ALIAS(led3)), data->layer == 3 && data->state)
@@ -54,4 +54,4 @@ ZMK_LISTENER(board_leds, layer_state_changed_listener);
 ZMK_SUBSCRIPTION(board_leds, zmk_layer_state_changed);
 
 // Need to happen after GPIO driver init
-SYS_INIT(board_leds_init, POST_KERNEL, 99);
+SYS_INIT(board_leds_init, POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEVICE);
