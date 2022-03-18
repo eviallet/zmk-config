@@ -49,8 +49,10 @@ static int layer_state_changed_listener(const zmk_event_t *ev) {
 
 	if(data->layer == 3 && data->state == 0) { // first layer selected = last layer disabled
 		return set_single_led(0);
-	} else {
+	} else if(data->state) {
 		return set_single_led(data->layer);
+	} else {
+		return 0;
 	}
 }
 
