@@ -15,23 +15,33 @@
 static int set_led(const char* ledNode, const gpio_pin_t ledPin, const int ledFlags, int state) {
 	const struct device *dev = device_get_binding(ledNode);
 	int ret;
-	if (dev == NULL) {  return -EIO;  }
-	ret = gpio_pin_configure(dev, ledPin, GPIO_OUTPUT | ledFlags);
-	if (ret < 0) {  return -EIO;  }
 
-	return gpio_pin_set(dev, ledPin, state) == 0; // 0 for success
+	if (dev == NULL) { 
+		return -EIO;
+	}
+
+	ret = gpio_pin_configure(dev, ledPin, GPIO_OUTPUT | ledFlags);
+	if (ret < 0) { 
+		return -EIO; 
+	}
+
+	return gpio_pin_set(dev, ledPin, state) == 0; // 0 for success, but for easier and-ing, return 1
 }
 
-static int zmk_listener_layer_led_callback(struct zmk_layer_state_changed *event) {
-	if((*event).state == 0)
+static int layer_state_changed_listener(const zmk_event_t *ev) {
+    struct zmk_layer_state_changed *data = as_zmk_layer_state_changed(ev);
+    if(data == NULL || data->state == 0) { // only consider enabled events
 		return 0;
+	}
+	
+	// Now, we know that the notifying layer is the currently enabled one 
 	return !(
-		set_led(LED_PARAMS(DT_ALIAS(led0)), (*event).layer == 0) && 
-		set_led(LED_PARAMS(DT_ALIAS(led1)), (*event).layer == 1) &&
-		set_led(LED_PARAMS(DT_ALIAS(led2)), (*event).layer == 2) &&
-		set_led(LED_PARAMS(DT_ALIAS(led3)), (*event).layer == 3)
+		set_led(LED_PARAMS(DT_ALIAS(led0)), data->layer == 0) && 
+		set_led(LED_PARAMS(DT_ALIAS(led1)), data->layer == 1) &&
+		set_led(LED_PARAMS(DT_ALIAS(led2)), data->layer == 2) &&
+		set_led(LED_PARAMS(DT_ALIAS(led3)), data->layer == 3)
 	); // 0 for success
 }
 
-ZMK_SUBSCRIPTION(layer_led_callback, zmk_layer_state_changed);
-// ZMK_LISTENER(zmk_layer_state_changed, layer_led_callback);
+ZMK_LISTENER(board_leds, layer_state_changed_listener);
+ZMK_SUBSCRIPTION(board_leds, zmk_layer_state_changed);
