@@ -40,6 +40,7 @@
 			gpios = <&gpio0 10 0>;
 			label = "Led 3";
 		};
+		
 	};
 
 	buttons {
