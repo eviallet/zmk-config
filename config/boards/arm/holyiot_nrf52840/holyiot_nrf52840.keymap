@@ -43,7 +43,6 @@
                 &kp B           &kp V
                 &kp SPACE       &kp F
                 &kp LEFT        &kp RIGHT
-				// &pim447_toggle
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
@@ -58,10 +57,9 @@
 
             bindings = <
                 &to LAYER_OS
-                &kp PAGE_UP     &kp PAGE_DOWN
+                &kp ENTER       &kp BACKSPACE
                 &kp UP          &kp DOWN
                 &kp LEFT        &kp RIGHT
-				// &pim447_toggle
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
@@ -80,7 +78,6 @@
                 &kp ENTER           &kp LA(F4)
                 &kp DEL             &kp ESC
                 &kp LC(LG(KP_N7))   &kp LC(LG(KP_N8))
-				// &pim447_toggle
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
@@ -99,7 +96,6 @@
                 &kp LC(LG(KP_N1))    &kp LC(LG(KP_N2))
                 &kp LC(LG(KP_N3))    &kp LC(LG(KP_N4))
                 &kp LC(LG(KP_N5))    &kp LC(LG(KP_N6)) 
-				// &pim447_toggle
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
@@ -118,7 +114,6 @@
                 &bt BT_SEL 0    &bt BT_SEL 1
                 &bt BT_SEL 2    &bt BT_SEL 3
                 &bt BT_SEL 4    &bt BT_CLR 
-				// &pim447_toggle
             >;
             
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
