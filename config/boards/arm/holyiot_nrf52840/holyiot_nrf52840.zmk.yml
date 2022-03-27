@@ -6,7 +6,7 @@ arch: arm
 url: https://github.com/eviallet/zmk-config
 features:
   - keys
-  # - trackball
+  - trackball
 outputs:
   - usb
   - ble
