@@ -24,6 +24,21 @@
             key-positions = <1 6>;
             bindings = <&to LAYER_BT>;
         };
+        combo_open_ep {
+            timeout-ms = <50>;
+            key-positions = <2 3>;
+            bindings = <&kp LC(LG(N9))>;
+        };
+        combo_pim_toggle {
+            timeout-ms = <50>;
+            key-positions = <4 5>;
+            bindings = <&pim447_toggle_toggle>;
+        };
+        combo_virtual_keybd {
+            timeout-ms = <50>;
+            key-positions = <6 7>;
+            bindings = <&kp LC(LG(N0))>;
+        };
     };
 };
 
